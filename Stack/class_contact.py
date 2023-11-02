@@ -40,8 +40,8 @@ class ContactBookView:
     
 if __name__ == "__main__":
     contact = ContactBookView()
-    contact.add_contact('Ahsan', '03253190838')
-    contact.add_contact('Wasi', '03245956121')
+    contact.add_contact('Ahsan', '0300000000')
+    contact.add_contact('Wasi', '030000000')
     contact.list_contacts()
     print()
     contact.search_contact('Ahsan')
