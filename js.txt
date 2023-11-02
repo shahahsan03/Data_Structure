@@ -1,1 +1,0 @@
-event binding, event popagation, event bubling
