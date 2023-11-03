@@ -1,18 +1,15 @@
 class Node:
-
     def __init__(self, data):
         self.data = data
         self.next = None
         
 class Linked_Lists:
-    
     def __init__(self):
         self.start = None
         
     def insertFirst(self, val):
         newNode=Node(val)
         newNode.next = self.start
-        print(newNode.next)
         self.start = newNode
         
     def insertLast(self,val):
@@ -27,7 +24,6 @@ class Linked_Lists:
                 temp = temp.next
             temp.next = newNode
 
-    
     def deleteFirst(self):
         if self.start is None:
             print("List is empty!")
@@ -53,7 +49,6 @@ class Linked_Lists:
             while temp is not None:
                 print(temp.data)
                 temp=temp.next
-
 
 print("<---Enter Choice between 1-6--->")
 print("<---Enter 1 to Insert element at the start--->")

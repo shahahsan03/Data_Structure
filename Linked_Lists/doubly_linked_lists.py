@@ -1,66 +1,100 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self,data):
+        self.prev = None
         self.data = data
         self.next = None
-        self.prev = None
-
-class DoublyLinkedList:
+        
+class doubleLinkedList:
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.start = None
+    
+    def InsertToFirst(self, val):
+        newNode = Node(val)
+        newNode.next = self.start
+        self.start = newNode          
 
-    def append(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            self.tail = new_node
+    def InsertToEnd(self, val):
+        if self.start is None:
+            newNode = Node(val)
+            self.start = newNode
         else:
-            new_node.prev = self.tail
-            self.tail.next = new_node
-            self.tail = new_node
-
-    def prepend(self, data):
-        new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-            self.tail = new_node
+            temp = self.start
+            while temp.next is not None:
+                temp = temp.next
+            newNode = Node(val)
+            temp.next = newNode
+            newNode.prev = temp
+            
+    def deleteAtFirst(self):
+        if self.start is None:
+            print('Linked List is empty, no element to delete.')
+        elif self.start.next is None:
+            self.start = None
         else:
-            new_node.next = self.head
-            self.head.prev = new_node
-            self.head = new_node
+            self.start = self.start.next
+            self.start.prev = None
+    
+    def deleteAtLast(self):
+        if self.start is None:
+            print('Linked List is empty, no element to delete')
+        elif self.start.next is None:
+            self.start = None
+        else:
+            temp = self.start   
+            while temp.next is not None:
+                temp = temp.next
+            temp.prev.next = None
 
-    def display_forward(self):
-        current = self.head
-        while current:
-            print(current.data)
-            current = current.next
+    def viewListForward(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            while temp is not None:
+                print(temp.data)
+                temp = temp.next
+    
+    def viewListBackward(self):
+        if self.start is None:
+            print('List is empty')
+        else:
+            temp = self.start
+            while temp.next is not None:
+                temp = temp.next
 
-    def display_backward(self):
-        current = self.tail
-        while current:
-            print(current.data)
-            current = current.prev
+            while temp is not None:
+                print(temp.data)
+                temp = temp.prev
 
-dll = DoublyLinkedList()
-dll.append(3)
-dll.append(1)
-dll.append(2)
-dll.prepend(5)
-print('Display Forward')
-dll.display_forward()
-print('Display Backward')
-dll.display_backward()
+print("--Please type the value of choice from 1-7--")
+print("1 <-- Insert an Element to Start")
+print("2 <-- Insert an Element to End")
+print("3 <-- Delete an Element at Start")
+print("4 <-- Delete an Element at End")
+print("5 <-- View List Forward")
+print("6 <-- View List Backward")
+print("7 <-- Exit Program")
 
-# null <- prev | data | next -> null
-#                |      |
-#                V      V
-#            prev | data | next
-#                |      |
-#                V      V
-#            prev | data | next
-#                |      |
-#                V      V
-#            prev | data | next
-#                |      |
-#                V      V
-#           null <- prev | data | next -> null
+newList = doubleLinkedList()
+
+while True:
+    choice = int(input("Enter Choice: "))
+    if choice == 1:
+        val = input("Enter an Elment to Start: ")
+        newList.InsertToFirst(val)
+    elif choice == 2:
+        val = input("Enter an Elment to End: ")
+        newList.InsertToEnd(val)
+    elif choice == 3:
+        newList.deleteAtFirst()
+    elif choice == 4:
+        newList.deleteAtLast()
+    elif choice == 5:
+        newList.viewListForward()
+    elif choice == 6:
+        newList.viewListBackward()
+    elif choice == 7:
+        print('Thanks for using our program')
+        break
+    else:
+        print("Please Enter Choice between 1-6")
